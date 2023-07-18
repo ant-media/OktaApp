@@ -1,5 +1,0 @@
-<Context>
-  <Resources allowLinking="true" cacheTtl="500" className="io.antmedia.webresource.StreamWebRoot"/>
-  <!--Loader loaderClass="org.red5.server.classloading.ServerClassLoader" /-->
-</Context>
-
