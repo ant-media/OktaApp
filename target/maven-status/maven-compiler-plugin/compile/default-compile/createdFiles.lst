@@ -1,0 +1,6 @@
+io/antmedia/enterprise/streamapp/WebSocketSignalingLocalHandler.class
+io/antmedia/enterprise/streamapp/WebSocketLocalHandler.class
+io/antmedia/enterprise/streamapp/AMSEndpointConfigurator.class
+io/antmedia/saml/SamlSecurityConfig.class
+io/antmedia/saml/WebSecurityConfig.class
+io/antmedia/saml/CustomSAMLAuthenticationProvider.class
