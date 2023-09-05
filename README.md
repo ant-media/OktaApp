@@ -56,6 +56,9 @@ You should edit the values in the following part of the file:
 </bean>
 ```
 
+To create keystore:
+`keytool -genkey -v -keystore keystore.jks -alias spring -keyalg RSA -keysize 2048 -validity 10000`
+
 Then run build command (requires Java 11 and maven):
 
 `mvn clean install -DskipTests -Dgpg.skip=true`
