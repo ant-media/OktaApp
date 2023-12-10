@@ -31,16 +31,8 @@
 		<property name="handler" ref="web.handler" />
 	</bean>
 
-	<bean id="saml.config" class="io.antmedia.saml.SamlSecurityConfig">
-		<property name="samlKeystoreLocation" value="/home/burak/temp/keystore.jks" />
-		<property name="samlKeystorePassword" value="123456" />
-		<property name="samlKeystoreAlias" value="spring" />
-		<property name="defaultIdp" value="http://www.okta.com/exkaf2qeilk3fwVgw5d7" />
-		<property name="metadataUrl" value="https://dev-88110941.okta.com/app/exkaf2qeilk3fwVgw5d7/sso/saml/metadata" />
-	</bean>
-
-	<bean id="saml.webConfig" class="io.antmedia.saml.WebSecurityConfig">
-		<property name="samlAudience" value="http://localhost:5080/OktaApp/saml/metadata" />
+	<bean id="saml.config" class="io.antmedia.saml.SecurityConfiguration">
+		<property name="metadataUrl" value="https://dev-88110941.okta.com/app/exkdr0cb1lxIVg67L5d7/sso/saml/metadata" />
 	</bean>
 
 	<bean id="dataStoreFactory" class="io.antmedia.datastore.db.DataStoreFactory"/>
