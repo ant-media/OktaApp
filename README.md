@@ -13,11 +13,11 @@ Then, log in to your account and go to Applications > Create App Integration. Se
 
 Use the following settings:
 
-Single sign on URL: http://localhost:5080/OktaApp/saml/SSO
+Single sign on URL: http://localhost:5080/OktaApp/login/saml2/sso/okta
 
 Use this for Recipient URL and Destination URL: ✅ (the default)
 
-Audience URI: http://localhost:5080/OktaApp/saml/metadata
+Audience URI: http://localhost:5080/OktaApp/saml2/service-provider-metadata/okta
 
 Then click Next. Select the following options:
 
@@ -39,27 +39,17 @@ Clone this repository
 `git clone https://github.com/ant-media/OktaApp.git`
 
 Edit the following file according to the metadata url you got in Step 1.
-`src/main/webapp/WEB-INF/red5-web.xml`
+`src/main/webapp/OktaApp/WEB-INF/red5-web.xml`
 
 You should edit the values in the following part of the file:
 
 ```
-<bean id="saml.config" class="io.antmedia.saml.SamlSecurityConfig">
-  <property name="samlKeystoreLocation" value="/home/burak/temp/keystore.jks" />
-  <property name="samlKeystorePassword" value="123456" />
-  <property name="samlKeystoreAlias" value="spring" />
-  <property name="defaultIdp" value="http://www.okta.com/exkaf2qeilk3fwVgw5d7" />
-  <property name="metadataUrl" value="https://dev-88110941.okta.com/app/exkaf2qeilk3fwVgw5d7/sso/saml/metadata" />
-</bean>
-<bean id="saml.webConfig" class="io.antmedia.saml.WebSecurityConfig">
-  <property name="samlAudience" value="http://localhost:5080/OktaApp/saml/metadata" />
+<bean id="saml.config" class="io.antmedia.saml.SecurityConfiguration">
+	<property name="metadataUrl" value="https://dev-88110941.okta.com/app/exkdr0cb1lxIVg67L5d7/sso/saml/metadata" />
 </bean>
 ```
 
-To create keystore:
-`keytool -genkey -v -keystore keystore.jks -alias spring -keyalg RSA -keysize 2048 -validity 10000`
-
-Then run build command (requires Java 11 and maven):
+Then run build command (requires Java 17 and maven):
 
 `mvn clean install -DskipTests -Dgpg.skip=true`
 
@@ -67,12 +57,12 @@ The inf build is successfull you will have `OktaApp.war` in `target` directory.
 
 ### Step 3: Install OktaApp.war
 
-If you build it by yourself as in Step 2, you already have war file. Otherwise you can use the OktaApp.war in this repository.
+If you build it by yourself as in Step 2, you already have war file. Otherwise, you can use the OktaApp.war in this repository.
 
 - Login Ant Media Server Dashboard
 - Click **New Application** Button
 - Select your war file
-- Name your application as `StreamApp` (note that this application name should be compatible with the URL you set in Step 1)
+- Name your application as `OktaApp` (note that this application name should be compatible with the URL you set in Step 1)
 
 If you don't do it in Step 2 you should edit the application settings according to the metadata url you got in Step 1. Edit `/usr/local/antmedia/webapp/OktaApp/WEB-INF/red5-web.xml` file. (to see where you should edit, please check Step 2) After saving settings, then you should restart Ant Media Server.
 
@@ -80,4 +70,4 @@ If you don't do it in Step 2 you should edit the application settings according 
 
 Now, if everything is done until now we can test if it works.
 
-Try to open WebRTC publish sample page `http://localhost:5080/OktaApp/samples/publish_webrtc.html` in your browser. If everything is ok, browser forward you to Okta login page. After logging in you should see the publish page.
+Try to open WebRTC publish sample page `http://localhost:5080/OktaApp/samples.html` in your browser. If everything is ok, browser forward you to Okta login page. After logging in you should see the publish page.
